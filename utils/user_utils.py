@@ -4,7 +4,6 @@ from fastapi import HTTPException
 from models import orm_all as UserModel
 from schemas import user as UserSchema
 from utils.hashing import Hasher
-from pydantic import EmailStr
 
 
 #Obtener usuario por ID
@@ -83,10 +82,10 @@ def delete_user(user_id:int, db: Session):
 
 #Eliminar usuario por correo
 
-def delete_user_by_email(user_email:EmailStr, db:Session):
+def delete_user_by_email(user_email:str, db:Session):
     db_user = get_user_by_email(user_email,db)
-    if db_user is None:
-        raise HTTPException(status_code=400, detail="Email no se encuentra")
+    if not db_user:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
     db.delete(db_user)
     db.commit()
 

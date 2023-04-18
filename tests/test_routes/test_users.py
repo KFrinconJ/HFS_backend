@@ -117,4 +117,26 @@ def test_delete_user_by_id(client):
 
 #     response = client.delete("/users/testuser@example.com/")
 
-#     assert response.status_code == 204
+#     assert response.json() == {"mensaje": "Usuario eliminado exitosamente"}
+
+
+def test_delete_user_by_email(client):
+    # Creamos un usuario de prueba
+    data = {
+        "nombre": "user_name",
+        "apellido": "user_last_name",
+        "email": "testuser@example.com",
+        "password": "testing",
+        "is_active": False
+    }
+
+
+    response = client.post("/users/", json=data)
+    assert response.status_code == 200
+
+    # Borramos el usuario por correo electrónico
+    response = client.delete("/users/email/juan.perez@example.com")
+
+    # Verificamos que el usuario ha sido eliminado
+    response = client.get("/users/email/juan.perez@example.com")
+    assert response.status_code == 404

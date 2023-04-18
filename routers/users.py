@@ -5,8 +5,10 @@ from schemas import user as UserSchema
 from utils import user_utils
 from config.db import get_db
 from typing import List
-from pydantic import EmailStr
 
+from fastapi import HTTPException
+
+from models import orm_all as UserModel
 
 router_user = APIRouter()
 
@@ -38,6 +40,6 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
     return user_utils.delete_user(user_id=user_id, db=db)
 
 
-@router_user.delete("/users/{user_email}", status_code=204)
-def delete_user_by_email(user_email: EmailStr, db: Session = Depends(get_db)):
-    return user_utils.delete_user_by_email(user_email=user_email, db=db)
+@router_user.delete("/users/{email}")
+def delete_user(email: str, db: Session = Depends(get_db)):
+    return user_utils.delete_user_by_email(email,db)
