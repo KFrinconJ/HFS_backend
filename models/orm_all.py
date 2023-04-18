@@ -59,10 +59,4 @@ class ContractType(Base):
     contratos = relationship("Contrato", back_populates="tipoContrato")
 
 
-class Xd():
-    pass
-
-
-
-
     
