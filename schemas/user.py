@@ -14,9 +14,32 @@ class UserCreate(UserBase):
 
 
 class User(UserBase):
-    id: int
-    rol: Optional[int]
-    contrato: Optional[int]
+    rol: Optional[int] = None
+    contrato: Optional[int] = None
 
     class Config:
         orm_mode = True
+
+
+
+class UserUpdate(UserBase):
+    nombre: str = None
+    apellido: str = None
+    email: str = None
+    is_active: bool = None
+    
+
+
+
+
+
+##############################
+
+class RolUser(BaseModel):
+    id : int
+    nombre_rol : str
+
+    class Config:
+        orm_mode = True
+
+
