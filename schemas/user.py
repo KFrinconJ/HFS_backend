@@ -1,10 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 class UserBase(BaseModel):
     nombre: str
     apellido: str
-    email: str
+    email: EmailStr
     is_active: bool
 
 

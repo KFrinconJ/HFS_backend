@@ -29,7 +29,7 @@ class RolUsuario(Base):
     __tablename__ = "rol"
 
     id = Column(Integer, primary_key=True, index=True)
-    nombre_rol = Column(String)
+    nombre_rol = Column(String(150))
     
     #Relacion con la tabla de usuarios
     usuarios = relationship("Usuario", back_populates="roles")
@@ -57,6 +57,10 @@ class ContractType(Base):
 
     #Relacion con la tabla de contratos 
     contratos = relationship("Contrato", back_populates="tipoContrato")
+
+
+class Xd():
+    pass
 
 
 
