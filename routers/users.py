@@ -6,10 +6,6 @@ from utils import user_utils
 from config.db import get_db
 from typing import List
 
-from fastapi import HTTPException
-
-from models import orm_all as UserModel
-
 router_user = APIRouter()
 
 
